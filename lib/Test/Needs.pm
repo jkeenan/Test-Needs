@@ -63,6 +63,8 @@ sub _numify_version {
         ? sprintf('%d.%03d%03d', ((split /\./, $1), 0, 0)[0..2])
       : /^(\x05)(.*)$/s
         ? sprintf('%d.%03d%03d', map ord, $1, split //, $2)
+      : /^\d+$/
+        ? $_
       : _croak qq{version "$_" does not look like a number};
   }
 }
